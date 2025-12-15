@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetyc Group: Contato / Solicite Seu Diagnóstico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CSS adicional para o tamanho da logo */
+        .logo img {
+            height: 30px; /* Ajuste o tamanho conforme necessário */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo Tetyc Group">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="servicos.html">Serviços</a></li> 
+                    <li><a href="contato.html">Fale Conosco</a></li> 
+                    <li><a href="javascript:void(0)" onclick="showLegal('termos')">Jurídico</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="contato" class="contact-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Fale Conosco / Solicite Seu Diagnóstico</h2>
+                <p class="subtitle">Preencha o formulário abaixo. Este é o primeiro passo para o <strong>Diagnóstico (Taxa)</strong>. Entraremos em contato para agendar a análise e fornecer seu orçamento inicial.</p>
+
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone (Opcional):</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição Detalhada do Problema:</label>
+                        <textarea id="description" name="description" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Enviar Solicitação de Diagnóstico</button>
+                    <p id="form-message" class="hidden"></p>
+                </form>
+
+                <div class="contact-info">
+                    <p>Alternativas de contato rápido:</p>
+                    <div class="social-links">
+                        <a href="mailto:help.tetyc@gmail.com" class="contact-icon" aria-label="Enviar Email">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </a>
+                        <a href="https://instagram.com/tetyc_group" target="_blank" class="contact-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <p>E-mail: help.tetyc@gmail.com | Instagram: @tetyc_group</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="politica" class="legal-section hidden">
+            <div class="container">
+                <h2 class="section-title">Política de Privacidade</h2>
+                <p><strong>Última Atualização: [Dezembro de 2025]</strong></p>
+                <p>A sua privacidade é uma prioridade para o Tetyc Group. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos as informações pessoais que você nos fornece ao utilizar nossos serviços e website.</p>
+                
+                <h4>1. Coleta de Informações</h4>
+                <p>Coletamos informações estritamente necessárias para a prestação dos nossos serviços de diagnóstico e manutenção, principalmente através do formulário "Solicite Seu Diagnóstico" (Dados Pessoais: Nome, Email, Telefone. Dados do Serviço: "Descrição Detalhada do Problema").</p>
+                
+                <h4>2. Uso das Informações</h4>
+                <p>Os dados coletados são usados exclusivamente para os seguintes fins: Realizar o contato inicial e agendamento do Diagnóstico; Fornecer orçamentos e informações sobre os serviços solicitados; Garantir a comunicação eficiente durante o processo de Execução e Suporte; Melhorar a qualidade dos nossos serviços.</p>
+                
+                <h4>3. Compartilhamento e Proteção</h4>
+                <p>O Tetyc Group não vende, aluga ou compartilha suas informações pessoais com terceiros para fins de marketing. Seus dados são tratados com a máxima confidencialidade e armazenados em ambientes seguros. Nossa equipe, dedicada e com alto senso de responsabilidade, garante que suas informações sejam acessadas apenas para as finalidades descritas.</p>
+                
+                <h4>4. Consentimento</h4>
+                <p>Ao preencher o formulário de contato, você concorda com a coleta e uso das suas informações conforme estabelecido nesta política.</p>
+                
+                <h4>5. Contato</h4>
+                <p>Para qualquer dúvida sobre esta política, entre em contato conosco: Email: help.tetyc@gmail.com</p>
+            </div>
+        </section>
+
+        <section id="termos" class="legal-section hidden">
+            <div class="container">
+                <h2 class="section-title">Termos de Serviço</h2>
+                <p><strong>Última Atualização: [Dezembro de 2025]</strong></p>
+                <p>Estes Termos de Serviço regem a utilização dos serviços de manutenção e consultoria tecnológica prestados pelo Tetyc Group. Ao solicitar um diagnóstico ou contratar nossos serviços, você aceita integralmente estes termos.</p>
+
+                <h4>1. Prestação de Serviços</h4>
+                <p>O Tetyc Group, formado por uma equipe de estudantes do Ensino Médio com competência autodidata, oferece os seguintes serviços: Diagnóstico Detalhado, SOS Performance, Renovação Total e Upgrade de Hardware.</p>
+                
+                <h4>2. Processo de Contratação e Taxa de Diagnóstico</h4>
+                <p>Solicitação: O cliente inicia o processo preenchendo o formulário "Solicite Seu Diagnóstico". Diagnóstico: A identificação precisa do problema é cobrada por uma Taxa de Diagnóstico, comunicada e aceita antes do início da análise. Orçamento: Após o diagnóstico, é apresentado um orçamento detalhado para a Execução do serviço. Abatimento: Caso o cliente opte por seguir com a Execução do serviço, o valor da Taxa de Diagnóstico será totalmente abatido do custo final.</p>
+                
+                <h4>3. Responsabilidade e Garantia</h4>
+                <p>Nossa equipe aplica dedicação e profissionalismo em cada serviço, buscando a excelência na solução de problemas. Garantimos que a Renovação Total inclui o backup seguro de dados essenciais antes da formatação, desde que os dados sejam acessíveis no momento do diagnóstico. A responsabilidade do cliente é indicar os dados críticos a serem salvos. Detalhes específicos sobre garantias (prazo de suporte, cobertura) serão fornecidos no momento do orçamento do serviço contratado.</p>
+                
+                <h4>4. Limitações</h4>
+                <p>O Tetyc Group não se responsabiliza por problemas pré-existentes, falhas de hardware não relacionadas ao serviço contratado ou qualquer perda de dados que ocorra devido a falhas catastróficas do equipamento antes do início do backup.</p>
+                
+                <h4>5. Contato</h4>
+                <p>Em caso de dúvidas sobre estes Termos: Email: help.tetyc@gmail.com</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4 class="logo">
+                    <img src="logo.png" alt="Logo Tetyc Group">
+                </h4>
+                <p>Soluções em tecnologia com foco em competência e transparência.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegação Rápida</h4>
+                <ul>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="servicos.html#processo">Nosso Processo</a></li>
+                    <li><a href="contato.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Jurídico</h4>
+                <ul>
+                    <li><a href="javascript:void(0)" onclick="showLegal('politica')">Política de Privacidade</a></li>
+                    <li><a href="javascript:void(0)" onclick="showLegal('termos')">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <div class="social-links">
+                    <a href="mailto:help.tetyc@gmail.com" class="contact-icon-footer" aria-label="Enviar Email">
+                        <i class="fas fa-envelope"></i> help.tetyc@gmail.com
+                    </a>
+                    <a href="https://instagram.com/tetyc_group" target="_blank" class="contact-icon-footer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i> @tetyc_group
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tetyc Group. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para mostrar as seções legais
+        function showLegal(id) {
+            document.querySelectorAll('.legal-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Simples toggle para menu mobile
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+        
+        // CÓDIGO DO FORMULÁRIO DE CONTATO (Fetch para a API)
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const formMessage = document.getElementById('form-message');
+            
+            formMessage.classList.remove('hidden');
+            formMessage.textContent = 'Enviando...';
+            formMessage.style.color = '#000000';
+
+            try {
+                // Caminho para a função Serverless: '/api/send-email'
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // MENSAGEM DE SUCESSO REVISADA COM ALERTA DE SPAM
+                    formMessage.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: green;"></i> 
+                        ${result.message}
+                        <br><br>
+                        <span style="font-weight: bold; color: #cc0000;">ATENÇÃO:</span> 
+                        Verifique sua caixa de entrada. Se não encontrar, procure na pasta <strong>Lixo Eletrônico/Spam</strong>.
+                    `;
+                    formMessage.style.color = 'green';
+                    form.reset(); // Limpa o formulário após o sucesso
+                } else {
+                    formMessage.textContent = result.message || 'Falha ao enviar. Verifique os dados.';
+                    formMessage.style.color = 'red';
+                }
+
+            } catch (error) {
+                console.error('Erro de rede/API:', error);
+                formMessage.textContent = 'Ocorreu um erro de conexão. Tente novamente mais tarde.';
+                formMessage.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
