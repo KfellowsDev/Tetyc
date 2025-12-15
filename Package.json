@@ -10,6 +10,5 @@
   "dependencies": {
     "nodemailer": "6.9.7"  
     
-    // NOTA: O Vercel geralmente funciona melhor quando a versão está exata (sem ^)
   }
 }
