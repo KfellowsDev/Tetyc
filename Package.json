@@ -8,6 +8,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "nodemailer": "^6.9.8"
+    "nodemailer": "6.9.7"  
+    
+    // NOTA: O Vercel geralmente funciona melhor quando a versão está exata (sem ^)
   }
 }
