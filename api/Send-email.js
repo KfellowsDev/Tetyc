@@ -1,106 +1,105 @@
-// Arquivo: api/send-email.js
+// api/send-email.js
 
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
-// As credenciais DEVEM ser armazenadas como Variáveis de Ambiente (SMTP_USER, SMTP_PASS)
-const SMTP_USER = process.env.SMTP_USER || 'help.tetyc@gmail.com';
-const SMTP_PASS = process.env.SMTP_PASS || 'hgwwodivrzmjlubb'; // SENHA DE APP
+// Variáveis de ambiente
+const userEmail = process.env.EMAIL_USER;
+const userPassword = process.env.EMAIL_PASSWORD;
+const targetEmail = process.env.TO_EMAIL;
 
-// Configurações do transporte SMTP do Gmail
+if (!userEmail || !userPassword || !targetEmail) {
+    console.error("Erro de Variáveis de Ambiente: EMAIL_USER, EMAIL_PASSWORD ou TO_EMAIL não configuradas corretamente.");
+    // Adicionamos um erro mais informativo para o Vercel logs
+    throw new Error("Variáveis de ambiente de e-mail ausentes. Verifique as configurações do Vercel.");
+}
+
+// Configuração do transportador Nodemailer
+// Usando 'service' para facilitar a configuração com o Gmail
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // use STARTTLS (porta 587)
+    service: 'gmail', 
     auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
+        user: userEmail,
+        pass: userPassword, // Deve ser a App Password para Gmail
     },
+    // Adiciona segurança extra (embora 'service: gmail' já defina isso)
+    secure: true, // Use true para porta 465, false para outras portas
+    port: 465,
 });
 
-module.exports = async (req, res) => {
-    // A função Serverless só deve aceitar requisições POST
+export default async function (req, res) {
+    // Garantir que é um método POST
     if (req.method !== 'POST') {
-        return res.status(405).send('Método Não Permitido');
+        return res.status(405).json({ success: false, message: 'Método não permitido.' });
     }
+
+    const { name, email, phone, description } = req.body;
+
+    // Simples validação dos dados
+    if (!name || !email || !description) {
+        return res.status(400).json({ success: false, message: 'Nome, e-mail e descrição são obrigatórios.' });
+    }
+
+    // 1. E-mail de Notificação para Você (o administrador)
+    const adminMailOptions = {
+        from: `Tetyc Group <${userEmail}>`,
+        to: targetEmail,
+        subject: `[NOVO DIAGNÓSTICO] Solicitação de ${name}`,
+        html: `
+            <h3>Nova Solicitação de Diagnóstico Recebida:</h3>
+            <p><strong>Nome:</strong> ${name}</p>
+            <p><strong>Email do Cliente:</strong> ${email}</p>
+            <p><strong>Telefone:</strong> ${phone || 'Não fornecido'}</p>
+            <hr>
+            <h4>Descrição Detalhada do Problema:</h4>
+            <p>${description}</p>
+            <hr>
+            <p>Entre em contato o mais rápido possível para agendar o diagnóstico.</p>
+        `,
+    };
+
+    // 2. E-mail de Confirmação para o Cliente
+    const customerMailOptions = {
+        from: `Tetyc Group <${userEmail}>`,
+        to: email, // O e-mail do cliente
+        subject: `Confirmação de Solicitação de Diagnóstico - Tetyc Group`,
+        html: `
+            <h3>Olá ${name},</h3>
+            <p>Recebemos sua solicitação de diagnóstico com sucesso! Agradecemos o contato.</p>
+            <hr>
+            <h4>Próximos Passos:</h4>
+            <ol>
+                <li>Nossa equipe revisará os detalhes fornecidos.</li>
+                <li>Entraremos em contato via e-mail ou telefone (se fornecido) nas próximas 24 horas úteis para agendar a análise do seu equipamento.</li>
+                <li>Lembre-se que o diagnóstico inicial é cobrado por uma taxa, que será abatida do valor total do serviço, caso você opte por seguir com a execução.</li>
+            </ol>
+            <hr>
+            <p>Detalhes da sua solicitação:</p>
+            <p><strong>Descrição:</strong> ${description}</p>
+            <p><strong>E-mail de Contato:</strong> ${targetEmail}</p>
+            <hr>
+            <p>Atenciosamente,<br>Equipe Tetyc Group</p>
+            <p style="font-size: 10px; color: #888;">Por favor, não responda a este e-mail. Para dúvidas, use o help.tetyc@gmail.com.</p>
+        `,
+    };
 
     try {
-        const { name, email, phone, description } = req.body;
-        const phoneDisplay = phone || 'Não Fornecido';
-        const date = new Date().toLocaleString('pt-BR', { 
-            timeZone: 'America/Sao_Paulo',
-            day: '2-digit', 
-            month: '2-digit', 
-            year: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit' 
-        });
-
-        if (!name || !email || !description) {
-            return res.status(400).json({ success: false, message: 'Nome, Email e Descrição são campos obrigatórios.' });
-        }
-
-        // --- TEMPLATE HTML/CSS INLINE QUE GERA O VISUAL SOLICITADO ---
-        const emailHTML = `
-            <div style="font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; max-width: 600px; margin: 0 auto; border: 1px solid #ddd;">
-                
-                <div style="background-color: #000000; color: #ffffff; padding: 20px; text-align: center;">
-                    <h2 style="margin: 0; font-size: 1.5em; letter-spacing: 1px;">TETYC GROUP</h2>
-                    <p style="margin-top: 5px; font-size: 1em;">Nova Solicitação de Diagnóstico</p>
-                </div>
-                
-                <div style="padding: 20px;">
-                    <p style="margin-bottom: 20px; color: #333;">Uma nova solicitação foi enviada através do site. Detalhes:</p>
-
-                    <div style="background-color: #f9f9f9; padding: 15px; margin-bottom: 10px; border-left: 5px solid #000000; border-radius: 4px;">
-                        <p style="margin: 0; font-weight: bold; color: #333;">Nome do Cliente:</p>
-                        <p style="margin: 5px 0 0; color: #000000;">${name}</p>
-                    </div>
-
-                    <div style="background-color: #f9f9f9; padding: 15px; margin-bottom: 10px; border-left: 5px solid #000000; border-radius: 4px;">
-                        <p style="margin: 0; font-weight: bold; color: #333;">Email:</p>
-                        <p style="margin: 5px 0 0; color: #000000;">${email}</p>
-                    </div>
-
-                    <div style="background-color: #f9f9f9; padding: 15px; margin-bottom: 10px; border-left: 5px solid #000000; border-radius: 4px;">
-                        <p style="margin: 0; font-weight: bold; color: #333;">Telefone:</p>
-                        <p style="margin: 5px 0 0; color: #000000;">${phoneDisplay}</p>
-                    </div>
-
-                    <div style="background-color: #f9f9f9; padding: 15px; margin-bottom: 20px; border-left: 5px solid #000000; border-radius: 4px;">
-                        <p style="margin: 0; font-weight: bold; color: #333;">Descrição do Problema:</p>
-                        <p style="margin: 5px 0 0; color: #000000; white-space: pre-wrap;">${description}</p>
-                    </div>
-                    
-                    <div style="background-color: #f9f9f9; padding: 15px; margin-bottom: 20px; border-left: 5px solid #000000; border-radius: 4px; text-align: left;">
-                        <p style="margin: 0; font-weight: bold; color: #333;">Data/Hora da Solicitação:</p>
-                        <p style="margin: 5px 0 0; color: #000000;">${date} (BRT)</p>
-                    </div>
-
-                    <p style="margin-top: 30px; text-align: center; font-size: 0.9em; color: #555;">
-                        <em>Esta é uma notificação automática do sistema Tetyc Group.</em>
-                    </p>
-                    <p style="text-align: center; font-size: 0.9em; color: #555;">
-                        Para responder ao cliente, clique no email acima ou responda diretamente a este email.
-                    </p>
-                </div>
-            </div>
-        `;
-        // --- FIM DO TEMPLATE ---
-
-        const mailOptions = {
-            from: `"Contato Tetyc Site" <${SMTP_USER}>`,
-            to: SMTP_USER, // O e-mail de destino é o seu próprio
-            subject: `Novo Pedido de Diagnóstico de: ${name}`,
-            html: emailHTML,
-        };
-
-        await transporter.sendMail(mailOptions);
+        // Envia o e-mail de Notificação (para você)
+        await transporter.sendMail(adminMailOptions);
         
-        res.status(200).json({ success: true, message: 'Solicitação de diagnóstico enviada com sucesso! Entraremos em contato em breve.' });
+        // Envia o e-mail de Confirmação (para o cliente)
+        await transporter.sendMail(customerMailOptions);
+
+        return res.status(200).json({ success: true, message: 'Solicitação enviada com sucesso! Um e-mail de confirmação foi enviado para você.' });
 
     } catch (error) {
-        console.error('Erro ao enviar e-mail:', error);
-        res.status(500).json({ success: false, message: 'Erro interno ao processar a solicitação. Tente novamente mais tarde.' });
+        console.error('Erro no envio de e-mail:', error);
+        
+        // Retorna um erro amigável ao frontend
+        return res.status(500).json({ 
+            success: false, 
+            message: 'Falha ao enviar e-mail. Houve um erro interno de conexão (SMTP). Verifique suas variáveis de ambiente e se a Senha de App do Gmail está correta.' 
+        });
     }
-};
-                          
+}
+    
+        
