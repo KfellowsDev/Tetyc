@@ -1,14 +1,14 @@
 {
   "name": "tetyc-group",
   "version": "1.0.0",
-  "description": "Landing page para Tetyc Group - Soluções em Manutenção",
+  "description": "Landing page do Grupo Tetyc",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js"  
   },
   "dependencies": {
-    "nodemailer": "6.9.7"  
-    
+    "nodemailer": "6.9.7",
+    "express": "4.18.2"       
   }
 }
