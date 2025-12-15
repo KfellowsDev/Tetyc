@@ -1,0 +1,395 @@
+/* 1. Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff; /* Fundo Branco */
+    color: #333333; /* Texto Principal Preto/Cinza Escuro */
+}
+
+/* Container para centralizar conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 2. Tipografia e Estilo P&B */
+.section-title, h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #111111; /* Preto Forte */
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #555555;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #000000;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    text-align: center;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.primary-btn {
+    background-color: #000000; /* Preto Sólido */
+    color: #ffffff; /* Texto Branco */
+}
+
+.primary-btn:hover {
+    background-color: #333333;
+    border-color: #333333;
+}
+
+/* Utilidades */
+.section-padding {
+    padding: 80px 0;
+}
+.hidden {
+    display: none;
+}
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* 3. Header e Navegação */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul a {
+    font-weight: 500;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000000;
+}
+
+/* 4. Hero Section */
+.hero-section {
+    background-color: #f7f7f7; /* Fundo Cinza Claro */
+    padding: 120px 0;
+    text-align: center;
+}
+
+.hero-text h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+/* 5. Seção de Serviços */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.service-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+/* 6. Seção de Processo */
+.process-section {
+    background-color: #eeeeee; /* Fundo Cinza para contraste */
+    text-align: center;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.step-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.step-arrow {
+    font-size: 2em;
+    color: #555555;
+}
+@media (max-width: 768px) {
+    .process-steps {
+        flex-direction: column;
+    }
+    .step-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+}
+
+
+/* 7. Competências */
+.competencies-section {
+    background-color: #ffffff;
+}
+
+.competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.comp-card {
+    border: 1px solid #cccccc;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.comp-card h3 {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.problem-statement {
+    color: #555555;
+    margin-bottom: 10px;
+}
+.solution-statement {
+    font-weight: bold;
+}
+
+/* 8. Formulário de Contato */
+.contact-section {
+    background-color: #f7f7f7;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.contact-info {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #dddddd;
+}
+
+/* Estilo para os ícones de contato */
+.contact-info .social-links {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espaço entre os ícones */
+}
+.contact-info .contact-icon {
+    color: #000000; /* Ícones em preto */
+    transition: color 0.3s;
+}
+.contact-info .contact-icon:hover {
+    color: #555555; /* Levemente mais claro no hover */
+}
+
+
+/* 9. Footer */
+footer {
+    background-color: #333333; /* Cinza Escuro para o footer */
+    color: #ffffff;
+    padding: 40px 0 10px;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #555555;
+}
+
+.footer-col {
+    min-width: 180px;
+}
+
+.footer-col h4 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+footer a {
+    color: #cccccc;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 0.9em;
+    color: #cccccc;
+}
+
+/* Estilo para os ícones no rodapé */
+.contact-icon-footer {
+    display: block;
+    margin-bottom: 5px;
+    color: #cccccc !important; 
+    font-size: 0.95em;
+}
+.contact-icon-footer i {
+    margin-right: 8px;
+}
+
+
+/* 10. Seção Jurídica (Legal) */
+.legal-section {
+    background-color: #ffffff;
+    padding: 40px 0;
+    border-top: 1px solid #eee;
+}
+.legal-section h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+.legal-section p {
+    margin-bottom: 15px;
+}
+
+/* 11. Media Queries (Responsividade) */
+@media (max-width: 768px) {
+    .hero-text h2 {
+        font-size: 2.2em;
+    }
+
+    /* Menu Hamburguer */
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-top: 1px solid #eee;
+        display: none;
+    }
+    nav ul {
+        flex-direction: column;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    .header-content {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 500px) {
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-col {
+        margin-bottom: 20px;
+        min-width: 100%;
+    }
+  }
+  
